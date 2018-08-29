@@ -30,7 +30,7 @@ var eye2 = {
 	h : 32
 };
 
-var s = 0;
+var s = 1;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -56,20 +56,16 @@ function draw() {
 	fill(bodycolour.r,bodycolour.g,bodycolour.b);
 	rect(240,145,20,100);
 	//Head
-	headcolour.r = 100;
-	headcolour.g = 70;
-	if (headcolour.b < 255 && s == 0) {
-		headcolour.b=headcolour.b+1;
-		if (headcolour.b == 255) {
-			s = 1;
-		}
+	headcolour.r = 70;
+	headcolour.g = 0;
+	if (headcolour.b == 255) {
+		s=-1;
 	}
-	else if (headcolour.b > 0 && s == 1) {
-		headcolour.b=headcolour.b-1;
-		if (headcolour.b == 0) {
-			s = 0;
-		}
+	else if (headcolour.b == 0) {
+		s=1;
 	}
+	headcolour.b=headcolour.b+s;
+
 	fill(headcolour.r,headcolour.g,headcolour.b);
 	ellipse(240,115,60,60);
 	//Eyes
