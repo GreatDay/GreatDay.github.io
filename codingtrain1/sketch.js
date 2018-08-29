@@ -1,4 +1,10 @@
-var runcolour = {
+var bodycolour = {
+	r : 0,
+	g : 0,
+	b : 0
+};
+
+var headcolour = {
 	r : 0,
 	g : 0,
 	b : 0
@@ -24,10 +30,12 @@ var eye2 = {
 	h : 32
 };
 
+var s = 0;
+
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	mouseX=240;
-	mouseY=115;
+	mouseY=185;
 	background(0);
 }
 
@@ -36,19 +44,33 @@ function draw() {
 	ellipseMode(CENTER);
 	rectMode(CENTER);
 
-	runcolour.r=random(0,255);
-	runcolour.g=random(0,255);
-	runcolour.b=runcolour.b+1;
-	noStroke();
-	fill(runcolour.r,runcolour.g,runcolour.b);
-	rect(500,115,50,50);
+	// noStroke();
+	// fill(runcolour.r,runcolour.g,runcolour.b);
+	// rect(500,115,50,50);
 
 	stroke(255,255,255);
 	//Body
-	fill(255,0,0);
+	bodycolour.r=random(0,255);
+	bodycolour.g=random(0,255);
+	bodycolour.b=random(0,255);
+	fill(bodycolour.r,bodycolour.g,bodycolour.b);
 	rect(240,145,20,100);
 	//Head
-	fill(0,0,255);
+	headcolour.r = 100;
+	headcolour.g = 70;
+	if (headcolour.b < 255 && s == 0) {
+		headcolour.b=headcolour.b+1;
+		if (headcolour.b == 255) {
+			s = 1;
+		}
+	}
+	else if (headcolour.b > 0 && s == 1) {
+		headcolour.b=headcolour.b-1;
+		if (headcolour.b == 0) {
+			s = 0;
+		}
+	}
+	fill(headcolour.r,headcolour.g,headcolour.b);
 	ellipse(240,115,60,60);
 	//Eyes
 	fill(0,255,0);
